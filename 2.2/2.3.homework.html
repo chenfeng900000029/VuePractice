@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue学习</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .wrapper{
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px silver solid;
+            text-align:center;
+            color: #42b983;
+            padding: 5px;
+            
+        }
+        .vueTitle{
+            height: 30px;
+            display: block;
+            font-size: 14px;
+           } 
+        .demand{ font-size: 14px;
+            color: #999;
+            border-top: 1px solid #cecdcd;
+            margin-top:10px; 
+            width:400px;
+            display: block;
+            line-height: 40px;
+            } 
+        .vueButton{ width: 90px;
+            margin-top:40px; 
+            background: #fff;
+            outline:none;
+            border-radius: 5px;
+            height:30px ;}
+        .vueArr{ color: #999;}    
+    </style>
+    <div id="demo" :class="wrapper" >
+                
+            <div v-text="jobTitle" >
+            </div>
+            <div v-html="demand" :class="classDemand">
+                
+            </div>
+            <div v-html="afterFilter" :class="classDemand">
+                
+                </div>
+            <div :class="vueArr">
+                <span >{{arr | filterArr}}</span>
+            </div>
+            <button v-on:click="grayBg" :class="vueButton">背景变灰</button>
+            <button v-on:click="reductionBg" :class="vueButton">还原北京</button>
+
+    </div>
+</head>
+<body>
+    
+</body>
+<script>
+    var app = new Vue({
+                el:'#demo',
+                data:{
+                    jobTitle:'Vue学习第二课',
+                    demand:'<span class="demand">"将数组中的数字进行过滤"</span><span class="vueArr">[2,4,5,6,7,8,9,0,32,45,556,66442]</span>',
+                    afterFilter:'<span class="demand">"G过滤后的数组G"</span>',
+                    wrapper:'wrapper',
+                    vueTitle:'vueTitle',
+                    classDemand:'classDemand',
+                    vueArr:'vueArr',
+                    body:'body',
+                    vueButton:'vueButton',
+                    arr:[2,4,5,6,7,8,9,0,32,45,556,66442]
+                },
+                filters:{
+                    filterArr:function(value){
+                        arrs=value
+                        var newArr=[]
+                        for(i=0;i<arrs.length;i++){
+                                if(arrs[i]%2==0){
+                                   newArr.push(arrs[i])
+                                    
+                                }
+                           } 
+                        return newArr   
+                        }
+                },
+                methods:{
+                    grayBg:function(){
+                        document.getElementById("demo").style.background = "#eaeaea";
+                    },
+                    reductionBg:function(){
+                        document.getElementById("demo").style.background = "#fff";
+                    }
+
+
+                }
+    })
+</script>
+</html>
